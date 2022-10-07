@@ -1,0 +1,50 @@
+Database
+redis-19338.c52.us-east-1-4.ec2.cloud.redislabs.com:19338
+Username: "default"
+DB_PASSWORD
+r = redis.Redis(password='DB_PASSWORD', host='redis-19338.c52.us-east-1-4.ec2.cloud.redislabs.com', port=19338)
+
+local
+brew install redis
+redis-server
+redis-cli
+ping
+
+cloud
+redis-cli -h redis-19338.c52.us-east-1-4.ec2.cloud.redislabs.com -p 19338 -a DB_PASSWORD
+ping
+info
+
+setup environment variable 
+export REDIS_OM_URL=redis://default:DB_PASSWORD@redis-19338.c52.us-east-1-4.ec2.cloud.redislabs.com:19338
+echo $REDIS_OM_URL
+
+
+python3 -m venv home_env
+source home_env/bin/activate
+pip install redis
+python shell 
+import redis 
+r = redis.Redis(password='DB_PASSWORD', host='redis-19338.c52.us-east-1-4.ec2.cloud.redislabs.com', port=19338, decode_responses=True)
+> set key value pair 
+r.set('foo', 'bar')
+r.get('foo')
+
+
+Redis streams 
+xrange to select range of data 
+listen to new stuff xread like pubsub 
+xread block 
+
+>> Practice order data - streaming data instead of kafka 
+Streams retain the data unlike pubsub
+StreamOrders and SubOrders files 
+1- exceute the StreamOrders 
+python 1_Streams/StreamOrders.py 
+2- excute the sub from another terminal 
+
+
+>> Practice Redis as nosql db (RedisJSON)
+
+
+
